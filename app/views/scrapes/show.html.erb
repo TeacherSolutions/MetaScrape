@@ -1,41 +1,91 @@
-<p class="lead">Domain Scrape for <%= @scrape.url.gsub("!",".").gsub("_","/").gsub("%","-").gsub("xSECx","ssl ") %></p>
-<hr>
-<p>
-  <strong>Title:</strong>
-  <%= @scrape.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @scrape.description %>
-</p>
-
-<p>
-  <strong>Page type:</strong>
-  <%= @scrape.page_type %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <a href="<%= @scrape.image %>"><%= @scrape.image %></a>
-</p>
-
-<p>
-  <strong>Locale:</strong>
-  <%= @scrape.locale %>
-</p>
-
-<p>
-  <strong>Site name:</strong>
-  <%= @scrape.site_name %>
-</p>
-
-<p>
-  <strong>Last updated on</strong>
-  <%= @scrape.updated_at.strftime("the #{@scrape.updated_at.day.ordinalize} of %B %Y at %-l:%M %p") %>
-
-<br>
-<div class="panel panel-primary">
-  <div class="panel-heading">Scrape tools</div>
-  <div class="panel-body"><%= link_to 'Edit', edit_scrape_path(@scrape) %> | <%= link_to 'Back', scrapes_path %></div>
+<p class="lead" style="margin-bottom: 2px;">Object Scrape - <%= @scrapeurl %></p>
 </div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading"><strong>Existing scrape data</strong></div>
+<table class="table">
+<tr>
+  <td width="15%">Title</td>
+  <td><%= @scrape.title %></td>
+</tr>
+
+<tr>
+  <td width="15%">Description</td>
+  <td><%= @scrape.description %></td>
+</tr>
+
+<tr>
+  <td width="15%">Page type</td>
+  <td><%= @scrape.page_type %></td>
+</tr>
+
+<tr>
+  <td width="15%">Image</td>
+  <td><a href="<%= @scrape.image %>" target="_BLANK"><%= @scrape.image %></a></td>
+</tr>
+
+<tr>
+  <td width="15%">Locale</td>
+  <td><%= @scrape.locale %></td>
+</tr>
+
+<tr>
+  <td width="15%">Site name</td>
+  <td><%= @scrape.site_name %></td>
+</tr>
+
+<tr>
+  <td width="15%">Last updated</td>
+  <td><%= distance_of_time_in_words(@scrape.updated_at, Time.now, include_seconds: true) %> ago</td> <!-- # .strftime("the #{@scrape.updated_at.day.ordinalize} of %B %Y at %-l:%M %p") -->
+</tr>
+
+</table>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>These are the raw tags that we found</strong>
+</div>
+<table class="table">
+<% @metatags.meta_tags.each do |meta| %>
+<tr>
+  <td width="15%"><%= meta.first %></td>
+  <td><%= meta.last %></td>
+</tr>
+<% end %>
+</table>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>Based on the OG and raw tags, we constructed the following Open Graph properties</strong>
+</div>
+<table class="table">
+<% @opengraph.each do |og| %>
+  <tr>
+    <td width="15%"><%= og.first %></td>
+    <td><%= og.last %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-heading"><strong>Facebook-style preview</strong></div>
+<div class="panel-body">
+  <br>
+  <div class="panel panel-default" style="max-width: 550px;">
+  <div class="panel-body" style="background: url('<%= @scrape.image %>') 50% 50%; background-size: cover; height: 300px;">
+  </div>
+  <div class="panel-footer">
+  <p class="lead" style="font-size: 18px; font-weight: 400; margin-bottom: 4px; font-family: Georgia, 'lucida grande', tahoma, verdana, arial, sans-serif; -webkit-font-smoothing: antialiased;"><%= @scrape.title %></p>
+  <p style="margin-top:2px; font-size: 12px;"><%= @scrape.description %></p>
+  <p class="small"><%= URI.parse(@scrapeurl).host.upcase %> | BY <span style="color:#337ab7;"><%= @scrape.site_name.upcase %></span></p>
+  </div>
+  </div>
+<p><a href="https://developers.facebook.com/tools/debug/og/object/?q=<%= @scrapeurl %>" target="_BLANK">Scrape this with Facebook</a> (view only)</p>
+</div>
+</div>
+
+<p class="text-center"><%= link_to 'Back', scrapes_path %></p>

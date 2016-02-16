@@ -15,6 +15,10 @@ class ScrapesController < ApplicationController
     if !@scrape
       redirect_to new_scrape_path(params)
     end
+    @scrapeurl = @scrape.url.gsub("!",".").gsub("_","/").gsub("%","-").gsub("xSECx","https://")
+    @metatags = MetaInspector.new(@scrapeurl)
+    @opengraph = OpenGraph.fetch(@scrapeurl)
+  rescue
   end
 
   # GET /scrapes/new
@@ -27,6 +31,7 @@ class ScrapesController < ApplicationController
 
   # GET /scrapes/1/edit
   def edit
+    redirect_to new_scrape_path
   end
 
   # POST /scrapes
@@ -48,7 +53,10 @@ class ScrapesController < ApplicationController
     opengraph = OpenGraph.fetch(scrape_params[:url])
     if opengraph
 
-      if opengraph.page_type
+      if opengraph.title
+        @scrape.title = opengraph.title
+      end
+      if opengraph.type
         @scrape.page_type = opengraph.type
       end
       if opengraph.image

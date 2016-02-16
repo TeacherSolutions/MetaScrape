@@ -15,6 +15,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-static-top" style="border-color: #e9eaed;">
+<div class="container">
+<div class="navbar-header">
+  <p class="navbar-brand" style="margin-bottom:0px;">Teacher Solutions for Developers</p>
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-right">
+  <li class="active"><a href="/" style="background-color: #e9eaed !important;">OpenGraph Scraper</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+</div>
 <div class="container">
   <% if current_page?(root_url) || current_page?(scrapes_url) %>
   <br>
@@ -48,6 +62,7 @@
   <div class="footer text-muted text-center small">
     <abbr data-toggle="tooltip" data-placement="bottom" title="Created for Teacher Solutions by Aidan Cornelius-Bell - public version released under the MIT license">&copy; 2016 Teacher Solutions, Pty Ltd. Some rights reserved.</abbr>
   </div>
+  <br>
 </div>
 </body>
 </html>
