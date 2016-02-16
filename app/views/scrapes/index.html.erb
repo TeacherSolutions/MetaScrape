@@ -3,7 +3,6 @@
     <tr>
       <th>URL / QDN</th>
       <th>Title</th>
-      <th>Page type</th>
       <th>Locale</th>
       <th style="min-width: 120px;">Actions</th>
     </tr>
@@ -12,9 +11,8 @@
   <tbody>
     <% @scrapes.each do |scrape| %>
       <tr>
-        <td class="col-md-1"><%= scrape.url.gsub("!",".").gsub("_","/").gsub("%","-") %></td>
+        <td class="col-md-1"><%= scrape.url.gsub("!",".").gsub("_","/").gsub("%","-").gsub("xSECx","ssl ") %></td>
         <td><%= scrape.title %></td>
-        <td><%= scrape.page_type %></td>
         <td><%= scrape.locale %></td>
         <td><%= link_to 'Show', scrape, class: "btn btn-xs btn-primary" %> <%= link_to 'Destroy', scrape, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
       </tr>

@@ -10,11 +10,17 @@ class ScrapesController < ApplicationController
   # GET /scrapes/1
   # GET /scrapes/1.json
   def show
+    if !@scrape
+      redirect_to new_scrape_path(params)
+    end
   end
 
   # GET /scrapes/new
   def new
     @scrape = Scrape.new
+    if params[:id]
+      @scrape.url = params[:id].gsub("!",".").gsub("_","/").gsub("%","-").gsub("xSECx","ssl ")
+    end
   end
 
   # GET /scrapes/1/edit
