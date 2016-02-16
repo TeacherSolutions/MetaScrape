@@ -1,0 +1,41 @@
+<p class="lead">Domain Scrape for <%= @scrape.url.gsub("!",".").gsub("_","/").gsub("%","-") %></p>
+<hr>
+<p>
+  <strong>Title:</strong>
+  <%= @scrape.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @scrape.description %>
+</p>
+
+<p>
+  <strong>Page type:</strong>
+  <%= @scrape.page_type %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @scrape.image %>
+</p>
+
+<p>
+  <strong>Locale:</strong>
+  <%= @scrape.locale %>
+</p>
+
+<p>
+  <strong>Site name:</strong>
+  <%= @scrape.site_name %>
+</p>
+
+<p>
+  <strong>Last updated on</strong>
+  <%= @scrape.updated_at.strftime("the #{@scrape.updated_at.day.ordinalize} of %B %Y at %-l:%M %p") %>
+
+<br>
+<div class="panel panel-primary">
+  <div class="panel-heading">Scrape tools</div>
+  <div class="panel-body"><%= link_to 'Edit', edit_scrape_path(@scrape) %> | <%= link_to 'Back', scrapes_path %></div>
+</div>

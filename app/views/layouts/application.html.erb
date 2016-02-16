@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MetaScrape</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <% if current_page?(root_url) || current_page?(scrapes_url) %>
+  <br>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      OpenGraph and URL Scraper
+    </div>
+    <div class="panel-body">
+      Below is a list of scrapes that have been cached. You can add a new scrape with the 'new scrape' button, or show or destroy an existing scrape in the table.
+    </div>
+  </div>
+  <% end %>
+  <% if notice %>
+  <br>
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      Your attention is required
+    </div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
+    </div>
+  </div>
+  <% end %>
+  <br>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= yield %>
+    </div>
+  </div>
+  <br>
+  <div class="footer text-muted text-center small">
+    <abbr data-toggle="tooltip" data-placement="bottom" title="Created for Teacher Solutions by Aidan Cornelius-Bell - public version released under the MIT license">&copy; 2016 Teacher Solutions, Pty Ltd. Some rights reserved.</abbr>
+  </div>
+</div>
+</body>
+</html>
