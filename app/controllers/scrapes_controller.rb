@@ -1,4 +1,6 @@
 class ScrapesController < ApplicationController
+  http_basic_authenticate_with name: "scrape", password: "me", except: :index
+
   before_action :set_scrape, only: [:show, :edit, :update, :destroy]
 
   # GET /scrapes
