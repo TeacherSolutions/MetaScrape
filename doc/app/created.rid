@@ -1,0 +1,7 @@
+Tue, 16 Feb 2016 12:23:35 +1030
+README.rdoc	Tue, 16 Feb 2016 09:20:19 +1030
+app/controllers/application_controller.rb	Tue, 16 Feb 2016 09:20:20 +1030
+app/controllers/scrapes_controller.rb	Tue, 16 Feb 2016 12:12:21 +1030
+app/helpers/application_helper.rb	Tue, 16 Feb 2016 09:20:20 +1030
+app/helpers/scrapes_helper.rb	Tue, 16 Feb 2016 09:49:42 +1030
+app/models/scrape.rb	Tue, 16 Feb 2016 12:15:48 +1030
